@@ -1,0 +1,138 @@
+﻿    @model PagedList.IPagedList<namj.Models.ChiTietHoaDon>
+@using PagedList.Mvc
+@{
+    Layout = "~/Views/Shared/MyLayoutPage1.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #2bb3ab;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #aaa;
+        }
+
+        tr:nth-child(even) {
+            background-color: #aaa;
+        }
+        /*phân trang*/
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1px;
+        }
+
+        .pagination-previous,
+        .pagination-next,
+        .pagination-info,
+        .pagination-pages {
+            margin: 1px;
+        }
+
+        .pagination-info {
+            font-size: 18px;
+        }
+
+        .pagination-pages {
+            display: flex;
+        }
+
+            .pagination-pages > * {
+                margin-right: 30px;
+            }
+
+            .pagination-pages > .active {
+                font-weight: bold;
+                pointer-events: none;
+                cursor: default;
+            }
+    </style>
+</head>
+<body>
+    <h2>Bảng Thông Tin Chi Tiết Hóa Đơn</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                Mã Đơn Giá:
+            </th>
+            <th>
+                Số Hóa Đơn:
+            </th>
+            <th>
+                Số Lượng KW:
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoHoaDon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongKW)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id1 = item.MaDonGia, id2 = item.SoHoaDon }, new { @class = "edit-button" }) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { id1 = item.MaDonGia, id2 = item.SoHoaDon }, new { @class = "edit-button" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id1 = item.MaDonGia, id2 = item.SoHoaDon }, new { @class = "edit-button" })
+                </td>
+            </tr>
+        }
+
+
+    </table>
+    <div class="pagination">
+        <div class="pagination-previous">
+            @if (Model.HasPreviousPage)
+            {
+                <a href="@Url.Action("Index", new { page = Model.PageNumber - 1 })">« Back</a>
+            }
+        </div>
+        <div class="pagination-next">
+            @if (Model.HasNextPage)
+            {
+                <a href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">Next »</a>
+            }
+        </div>
+        <div class="pagination-info">
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        </div>
+        <div class="pagination-pages">
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+        <div class="footer" style="clear: both;">
+            <h3>Thông Tin Liên hệ</h3>
+            <ul>
+                <li>Địa chỉ: 605/8 xô viết nghệ tĩnh, Phường 26, Quận bình thạnh, Tp Hồ Chí Minh</li>
+                <li>Email: namnguyen@gmail.com</li>
+                <li>Điện thoại: 0908968912</li>
+            </ul>
+        </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿@model namj.Models.HoaDon
+
+@{
+    Layout = null;
+    ViewBag.Title = "Create";
+    namj.Models.phanmemtinhtiendienEntities db = new namj.Models.phanmemtinhtiendienEntities();
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <style>
+        div {
+            width: 80%; /* Đặt chiều rộng cho phần tử <div> */
+        }
+
+        h4 {
+            font-size: 30px; /* Đặt kích thước chữ cho phần tử <h4> */
+        }
+
+        .card {
+            width: 350px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .card-header {
+            background-color: #333;
+            padding: 16px;
+            text-align: center;
+        }
+
+            .card-header .text-header {
+                margin: 0;
+                font-size: 18px;
+                color: rgb(255, 255, 255);
+            }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+            .form-group label {
+                display: block;
+                font-size: 14px;
+                color: #333;
+                font-weight: bold;
+                margin-bottom: 1px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="email"],
+            .form-group input[type="password"] {
+                width: 100%;
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+        .button {
+            padding: 12px 24px;
+            margin-left: 13px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: black;
+            color: #fff;
+            text-transform: uppercase;
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer
+        }
+
+            .button:hover {
+                background-color: #ccc;
+                color: black;
+            }
+
+        .fakeimg {
+            background-color: #aaa;
+            width: 25%;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    { }
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thông Tin Hóa Đơn</h4>
+        <div class="fakeimg" style="height:280px;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Số Hóa Đơn
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SoHoaDon, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SoHoaDon, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Tháng
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Thang, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Thang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Mã Điện Kế
+                <div class="col-md-10">
+                    <select class="form-control" name="MaDienKe">
+                        @foreach (var t in db.DienKes.ToList())
+                        {
+                            <option value="@t.MaDienKe">@t.MaDienKe</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                Thành Tiền
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ThanhTien, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ThanhTien, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="button" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div>
+        @Html.ActionLink("Trở Về Trang Chính", "Index")
+    </div>
+</body>
+</html>

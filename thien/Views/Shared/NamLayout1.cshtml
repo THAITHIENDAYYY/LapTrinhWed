@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("header", required: false)
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('../../content/hinh1.jpg') no-repeat top left;
+        background-size: cover;
+    }
+    /* Định dạng cho menu */
+    ul {
+        display: inline-flex;
+        list-style: none;
+        color: #07f77b;
+    }
+
+    /* Định dạng cho các mục trong menu */
+    li {
+        width: 120px;
+        margin: 15px;
+        padding: 15px;
+   
+    }
+
+    /* Định dạng cho liên kết trong menu */
+    a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #ece0e0;
+    }
+
+        /* Định dạng cho liên kết khi rê chuột vào */
+        a:hover {
+            background-color: #111212;
+            color: #ddd0d0;
+        }
+    /* Footer */
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 3px;
+        text-align: center;
+        background: black;
+        margin-top: 5px;
+        color: #fff;
+    }
+    .navigation-menu {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .cod {
+        border: 2px solid black;
+        border-radius: 10px;
+        height: 70px;
+        width: auto;
+    }
+
+</style>
+
+    
+</head>
+<body>
+    <header class="header">
+        <div class="row">
+            <div class="col-md-3 logo">
+
+            </div>
+        </div>
+    </header>
+
+
+    <ul class="navigation-menu">
+        <li>
+            <a onclick="location.href='@Url.Action("Index", "TrangChu")'">
+                <img  class="cod" src="~/Content/image(10411).png" />
+            </a>
+        </li>
+        <li> @Html.ActionLink("Khu vực ", "../KHUVUC/Index") </li>
+        <li> @Html.ActionLink("Khách Hàng", "../KHACHHANG/Index")</li>
+        <li> @Html.ActionLink("Hóa Đơn", "../HOADON/Index")</li>
+        <li> @Html.ActionLink("Chi Tiết Hóa Đơn", "../CHITIETHOADON/Index")</li>
+        <li> @Html.ActionLink("Đơn Giá", "../DONGIA/Index")</li>
+        <li> @Html.ActionLink("Điện Kế", "../DIENKE/Index")</li>
+    </ul>
+
+
+    @RenderBody()
+
+<div class="footer" style="clear: both;">
+    <h3>Thông Tin Liên hệ</h3>
+    <ul>
+        <li>Địa chỉ: 605/8 xô viết nghệ tĩnh, Phường 26, Quận bình thạnh, Tp Hồ Chí Minh</li>
+        <li>Email: namnguyen@gmail.com</li>
+        <li>Điện thoại: 0908968912</li>
+    </ul>
+</div>
+
+
+    @RenderSection("footer", required: false)
+</body>
+</html>

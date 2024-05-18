@@ -1,0 +1,25 @@
+﻿@model namj.Models.KhuVuc
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteTB</title>
+</head>
+<body>
+    <div>
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+        @Html.ActionLink("Quay lai", "Index");
+    </div>
+</body>
+</html>

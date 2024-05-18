@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+
+
+
+        /*sửa nút Thêm*/
+
+        .add-button {
+            border: 2px solid #07fa64;
+            background-color: #07fa64;
+            border-radius: 0.9em;
+            padding: 0.8em 1.2em 0.8em 1em;
+            transition: all ease-in-out 0.2s;
+            font-size: 16px;
+        }
+
+        button span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #f2f5f3;
+        }
+
+                /*sửa nút chỉnh sửa*/
+                .edit-button {
+                    background-color: #008CBA;
+                    border: none;
+                    color: white;
+                    padding: 10px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 14px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                }
+
+                    .edit-button:hover {
+                        background-color: #005F6B;
+                    }
+
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    outline: none;
+                    cursor: pointer;
+                    width: 150px;
+                    height: 50px;
+                    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+                    border-radius: 30px;
+                    border: 1px solid #8F9092;
+                    transition: all 0.2s ease;
+                    font-family: "Source Sans Pro", sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #606060;
+                    text-shadow: 0 1px #fff;
+                }
+
+                    button:hover {
+                        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+                    }
+
+                    button:active {
+                        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+                    }
+
+                    button:focus {
+                        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+                    }
+                /*header*/
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            /* Style the topnav links */
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                /* Change color on hover */   
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+    </style>
+    
+</head>
+<body>
+   
+        
+    <tr>
+        
+        <div class="topnav">
+
+            <a href="#"> TRANG CHỦ </a>
+
+            <a href="@Url.Action("Create")">THÊM</a>
+
+            <a href="#">@Html.ActionLink("TÌM KIẾM", "Search")</a>
+
+
+            <a href="#" style="float:right">
+                <div class="container">
+                    <input placeholder="Type to search..." required="" class="input" name="text" type="text">
+                    <div class="icon">
+
+                    </div>
+                </div>
+
+            </a>
+
+        </div>
+       
+    </tr>
+         <tr>
+
+            <td height="300px" width="150px" valign="top">
+
+
+
+
+            </td>
+
+            <td colspan="2">
+                @RenderBody()
+            </td>
+
+        </tr>
+        
+
+
+
+
+    </table>
+
+
+
+</body>
+</html>

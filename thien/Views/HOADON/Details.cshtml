@@ -1,0 +1,80 @@
+﻿@model namj.Models.HoaDon
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <style>
+        div {
+            width: 100%; /* Đặt chiều rộng cho phần tử <div> */
+        }
+
+        h4 {
+            font-size: 24px; /* Đặt kích thước chữ cho phần tử <h4> */
+        }
+
+        dl {
+            font-size: 18px; /* Đặt kích thước chữ cho phần tử <dl> */
+        }
+
+        dt {
+            font-weight: bold; /* Đặt đậm cho phần tử <dt> */
+        }
+
+        dd {
+            margin-left: 0; /* Xóa margin trái của phần tử <dd> */
+            margin-bottom: 10px; /* Thêm margin dưới cho phần tử <dd> */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h4>Thông Tin Chi Tiết Hóa Đơn </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SoHoaDon)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SoHoaDon)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Thang)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Thang)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MaDienKe)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MaDienKe)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ThanhTien)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ThanhTien)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Sửa", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Trở Về Trang Chính", "Index")
+    </p>
+</body>
+</html>

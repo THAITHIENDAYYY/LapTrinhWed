@@ -1,0 +1,111 @@
+﻿@model IEnumerable<namj.Models.DienKe>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: deepskyblue;
+        }
+
+        tr:nth-child(even) {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Search", "DIENKE"))
+    {
+        <div class="form-group">
+            <label for="name">Tìm kiếm theo:</label>
+            @Html.RadioButton("searchString", "MaDienKe") Mã Điện Kế
+            @Html.RadioButton("searchString", "HieuDienThe") Hiệu Điện Thế
+            @Html.RadioButton("searchString", "Makh") Mã kh
+            @Html.RadioButton("searchString", "MaKhuVuc") Mã Khu Vực
+            @Html.RadioButton("searchString", "NuocSanXuat") Nước Sản Xuất
+            @Html.RadioButton("searchString", "GhiChu") Ghi Chú
+            @Html.TextBox("search")
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "DIENKE")'">
+            Trở lại trang chính
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Search", "DIENKE")'">
+            Trở Về
+        </button>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaDienKe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HieuDienThe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaKh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaKhuVuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NuocSanXuat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GhiChu)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDienKe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HieuDienThe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKhuVuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NuocSanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { madk = item.MaDienKe }) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { madk = item.MaDienKe }) |
+                    @Html.ActionLink("Xóa", "Delete", new { madk = item.MaDienKe })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>

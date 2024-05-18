@@ -1,0 +1,96 @@
+﻿@model IEnumerable<namj.Models.HoaDon>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: deepskyblue;
+        }
+
+        tr:nth-child(even) {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Search", "HOADON"))
+    {
+        <div class="form-group">
+            <label for="name">Tìm kiếm theo:</label>
+            @Html.RadioButton("searchString", "SoHoaDon") Số Hóa Đơn
+            @Html.RadioButton("searchString", "MaDienKe") Mã Điện Kế
+            @Html.RadioButton("searchString", "ThanhTien") Thành Tiền
+            @Html.TextBox("search")
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "HOADON")'">
+            Trở lại trang chính
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Search", "HOADON")'">
+            Trở Về
+        </button>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoHoaDon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaDienKe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThanhTien)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoHoaDon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDienKe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThanhTien)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { mahd = item.SoHoaDon }) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { mahd = item.SoHoaDon }) |
+                    @Html.ActionLink("Xóa", "Delete", new { mahd = item.SoHoaDon })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>

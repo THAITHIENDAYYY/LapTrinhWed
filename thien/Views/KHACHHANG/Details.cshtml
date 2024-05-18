@@ -1,0 +1,72 @@
+﻿@model namj.Models.KhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <style>
+        div {
+            width: 100%; /* Đặt chiều rộng cho phần tử <div> */
+        }
+
+        h4 {
+            font-size: 24px; /* Đặt kích thước chữ cho phần tử <h4> */
+        }
+
+        dl {
+            font-size: 18px; /* Đặt kích thước chữ cho phần tử <dl> */
+        }
+
+        dt {
+            font-weight: bold; /* Đặt đậm cho phần tử <dt> */
+        }
+
+        dd {
+            margin-left: 0; /* Xóa margin trái của phần tử <dd> */
+            margin-bottom: 10px; /* Thêm margin dưới cho phần tử <dd> */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h4>Thông Tin Chi Tiết Khách Hàng</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.MaKH)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MaKH)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DiaChi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SoDienThoai)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SoDienThoai)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Sửa", "Edit", new { MaKH = Model.MaKH }) |
+        @Html.ActionLink("Trở Về Trang Chính", "Index")
+    </p>
+</body>
+</html>

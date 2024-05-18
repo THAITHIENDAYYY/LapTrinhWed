@@ -1,0 +1,105 @@
+﻿@model IEnumerable<namj.Models.DonGia>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: deepskyblue;
+        }
+
+        tr:nth-child(even) {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Search", "DONGIA"))
+    {
+        <div class="form-group">
+            <label for="name">Tìm kiếm theo:</label>
+            @Html.RadioButton("searchString", "MaDonGia") Mã Đơn Giá
+            @Html.RadioButton("searchString", "SoTien") Số Tiền
+            @Html.RadioButton("searchString", "TuKW") Từ KW
+            @Html.RadioButton("searchString", "DenKW") Đến KW
+            @Html.RadioButton("searchString", "GhiChu") Ghi Chú
+            @Html.TextBox("search")
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "DONGIA")'">
+            Trở lại trang chính
+        </button>
+        <button type="button" onclick="location.href='@Url.Action("Search", "DONGIA")'">
+            Trở Về
+        </button>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaDonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoTien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TuKW)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DenKW)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GhiChu)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoTien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TuKW)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DenKW)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { madg = item.MaDonGia }) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { madg = item.MaDonGia }) |
+                    @Html.ActionLink("Xóa", "Delete", new { madg = item.MaDonGia })
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+</body>
+</html>
